@@ -68,33 +68,33 @@ struct Main {
             ["$generateCompletionScript:Variadic<Shell>="],
             ["$generateManpage:Flag="],
         ]),
-        .mdoc("DESCRIPTION\n", manpageDescription),
-        .mdoc("", cmdArgLibNote),
-        .mdoc("", "The following options are available:"),
+        .paragraph("DESCRIPTION\n", manpageDescription),
+        .paragraph("", cmdArgLibNote),
+        .paragraph("", "The following options are available:"),
         .parameter("help", "Show this help screen"),
         .parameter("tree", "Show the command hierarchy"),
         .parameter("version", "Show the version"),
-        .mdoc("META-OPTIONS", "The following meta-options are used when configuring the $F{} installation."),
+        .paragraph("META-OPTIONS", "The following meta-options are used when configuring the $F{} installation."),
         .parameter("generateCompletionScript","Print a completion script for $F{} for the indicated shell (\(ShellType.orCases()))"),
         .parameter("generateManpage", "Generate the mdoc source for this manual page and write it to stadard output"),
-        .mdoc("CONFIGURATION OPTIONS", globalOptionNote),
-        .mdoc("", availableGlobalOptions),
+        .paragraph("CONFIGURATION OPTIONS", globalOptionNote),
+        .paragraph("", availableGlobalOptions),
         .parameter("fishDir", "The directory for fish completion files", .path),
         .parameter("manpageDir", "The directory in which to install manpages", .path),
         .parameter("productDir", "The directory in which to install the products", .path),
         .parameter("releaseDir", "The directory containing the package's products", .path),
         .parameter("zshDir", "The directory for zsh completion files", .path),
-        .mdoc("SUBCOMMANDS", "The available subcommands are:"),
+        .paragraph("SUBCOMMANDS", "The available subcommands are:"),
         .commandContext(Init.commandNode.context),
         .commandContext(Install.commandNode.context),
         .commandContext(Uninstall.commandNode.context),
-        .mdoc("EXAMPLES",examples),
-        .mdoc("ENVIRONMENT", manpageEnvironmentNote1),
-        .mdoc("", manpageEnvironmentNote2),
-        .mdoc("", manpageEnvironmentNote3),
-        .mdoc("", exitStatus),
-        .mdoc("", seeAlso),
-        .mdoc("", authors),
+        .mdoc(examples),
+        .paragraph("ENVIRONMENT", manpageEnvironmentNote1),
+        .paragraph("", manpageEnvironmentNote2),
+        .paragraph("", manpageEnvironmentNote3),
+        .mdoc(exitStatus),
+        .mdoc(seeAlso),
+        .mdoc(authors),
     ]
 
     static let manpageDescription = """
@@ -133,6 +133,7 @@ struct Main {
     private static let name = commandNode.name
 
     private static let examples = """
+        .Sh EXAMPLES
         Initialize, build, install and run a sample product with unit testing
         and completion scripts.
         .Pp

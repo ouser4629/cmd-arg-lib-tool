@@ -98,8 +98,8 @@ extension Init {
             ["$*", "!generateManpage"],
             ["$generateManpage:Flag="]
         ]),
-        .mdoc("DESCRIPTION", manpageDescriptionNote1),
-        .mdoc("","The following options are available:"),
+        .paragraph("DESCRIPTION", manpageDescriptionNote1),
+        .paragraph("","The following options are available:"),
         .parameter("completion", completionNote),
         .parameter("directory", directoryNote, .path),
         .parameter("generateManpage", "Generate the mdoc source for this manual page and write it to standard output"),
@@ -107,17 +107,17 @@ extension Init {
         .parameter("less", lessNote),
         .parameter("productName", productNameNote),
         .parameter("template", "The template to use"),
-        .mdoc("", packageNameNote),
-        .mdoc("TEMPLATES",templateNote),
+        .paragraph("", packageNameNote),
+        .paragraph("TEMPLATES",templateNote),
         .pseudoParameter("opaque", "A product without help screen generation"),
         .pseudoParameter("basic", "A product with a basic help screen"),
         .pseudoParameter("testing", "A product with unit testing"),
         .pseudoParameter("manpage", "A product with manual page generation."),
         .pseudoParameter("simple-tree", "A product with commands and subcommands"),
         .pseudoParameter("stateful-tree", "A product with stateful commands and subcommands"),
-        .mdoc("", Main.exitStatus),
-        .mdoc("", seeAlso),
-        .mdoc("", Main.authors),
+        .mdoc(Main.exitStatus),
+        .mdoc(seeAlso),
+        .mdoc(Main.authors),
     ]
 
     private static let templateNote = """

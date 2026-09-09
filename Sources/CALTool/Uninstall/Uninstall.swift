@@ -62,17 +62,17 @@ struct Uninstall {
             ["$*", "!generateManpage"],
             ["$generateManpage:Flag="]
         ]),
-        .mdoc("DESCRIPTION", manpageOverview1),
-        .mdoc("", manpageOverview2),
-        .mdoc("", "The following options are available:"),
+        .paragraph("DESCRIPTION", manpageOverview1),
+        .paragraph("", manpageOverview2),
+        .paragraph("", "The following options are available:"),
         .parameter("confirmEach", "Request confirmation before attempting to remove each file"),
         .parameter("confirmEachLimit", "Request confirmation just once if more than $E{confirmEachLimit} products are being removed"),
         .parameter("generateManpage", "Generate the mdoc source for this manual page and write it to standard output"),
         .parameter("help", "Show a help screen"),
-        .mdoc("\n", shadowNote),
-        .mdoc("", Main.exitStatus),
-        .mdoc("", seeAlso),
-        .mdoc("", Main.authors),
+        .paragraph("\n", shadowNote),
+        .mdoc(Main.exitStatus),
+        .mdoc(seeAlso),
+        .mdoc(Main.authors),
     ]
 
     static let manpageOverview1 = """

@@ -63,8 +63,8 @@ struct Main {COMPLETION_GENERATOR_LINES
     private static let manpageElements: [ShowElement] = [
         .prologue(description: "print a greeting."),
         .synopsis(),
-        .mdoc("DESCRIPTION", "Print $T{greeting}, followed by $E{name}, $E{repeats} times."),
-        .mdoc("", "The following options are available:"),
+        .paragraph("DESCRIPTION", "Print $T{greeting}, followed by $E{name}, $E{repeats} times."),
+        .paragraph("", "The following options are available:"),
         .parameter("greeting", "The greeting to print"),
         .parameter("includeIndex", "Show index of repeated greetings"),
         .parameter("lower", "Print text in lower case"),
@@ -73,11 +73,11 @@ struct Main {COMPLETION_GENERATOR_LINES
         .parameter("generateManpage", "Generate this manual page"), COMPLETION_SHOW_ELEMENT_LINE
         .parameter("version", "Show version information"),
         .parameter("help", "Show help information"),
-        .mdoc("", note1),
-        .mdoc("", exitStatus),
-        .mdoc("", examples),
-        .mdoc("", seeAlso),
-        .mdoc("", authors),
+        .paragraph("", note1),
+        .mdoc(exitStatus),
+        .mdoc(examples),
+        .mdoc(seeAlso),
+        .mdoc(authors),
     ]
 
     private static let note1 = \"\"\"

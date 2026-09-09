@@ -76,17 +76,17 @@ struct Install {
             ["$*", "!generateManpage"],
             ["$generateManpage:Flag="]
         ]),
-        .mdoc("DESCRIPTION", productNote),
-        .mdoc("","The following options are available:"),
+        .paragraph("DESCRIPTION", productNote),
+        .paragraph("","The following options are available:"),
         .parameter("help", "Show a help screen"),
         .parameter("manpages", manpageSynopsis),
         .parameter("shells", shellsSynopsis, .list(ShellType.cases)),
         .parameter("generateManpage", "Generate the mdoc source for this manual page and write it to standard output"),
-        .mdoc("\n", completionInstallationNote),
-        .mdoc("\n", manpageInstallationNote),
-        .mdoc("", Main.exitStatus),
-        .mdoc("", seeAlso),
-        .mdoc("", Main.authors),
+        .paragraph("\n", completionInstallationNote),
+        .paragraph("\n", manpageInstallationNote),
+        .mdoc(Main.exitStatus),
+        .mdoc(seeAlso),
+        .mdoc(Main.authors),
     ]
 
     static let productNote: String = """
