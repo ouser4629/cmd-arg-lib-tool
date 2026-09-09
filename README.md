@@ -361,7 +361,7 @@ to open a new tab by pressing `<CMD-T>`.
 
 This software is licensed under the [Mozilla Public License, v. 2.0 "MPL-2.0"](https://mozilla.org/MPL/2.0).
 
-`caltool` is currently in beta (version 0.5.0), and has only been tested for macOS.
+`caltool` is currently in beta (version 0.5.1), and has only been tested for macOS.
 
 `caltool` requires macOS 12, and should be built using Swift 6.2 or later. Earlier toolchains 
 either do not support macros or have unacceptable macro build performance.
