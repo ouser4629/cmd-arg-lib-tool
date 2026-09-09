@@ -170,8 +170,8 @@ OPTIONS
   -h/--help                   Show this help screen.
   -t/--tree                   Show the command hierarchy.
   -v/--version                Show the version.
-  <configuration-options>...  Global configuration options (described in the manual
-                              page).
+  <configuration-options>...  Global configuration options passed to subcommands
+                              (described in the manual page).
 
 SUBCOMMANDS
   init       Initialize a new package.

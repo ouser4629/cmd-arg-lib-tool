@@ -54,7 +54,7 @@ struct Main {
         .parameter("help", "Show this help screen"),
         .parameter("tree", "Show the command hierarchy"),
         .parameter("version", "Show the version"),
-        .pseudoParameter("<configuration-options>...", "Global configuration options (described in the manual page)"),
+        .pseudoParameter("<configuration-options>...", "Global configuration options passed to subcommands (described in the manual page)"),
         .text("\nSUBCOMMANDS"),
         .commandContext(Init.commandNode.context),
         .commandContext(Install.commandNode.context),
