@@ -78,9 +78,9 @@ MyTool> swift build -c release
 
 MyTool> caltool install --with-shells fish zsh
 my-tool
-    installed "my-tool" in /Users/po/.local/bin
-    installed "my-tool.fish" in /Users/po/.config/fish/completions
-    installed "_my-tool" in /Users/po/.config/zsh/completions
+    installed "my-tool" in "/Users/ps/.local/bin"
+    installed "my-tool.fish" in "/Users/ps/.config/fish/completions"
+    installed "_my-tool" in "/Users/ps/.config/zsh/completions"
 ```
 
 </details>
@@ -144,9 +144,9 @@ See "my-tool --help" for more information.
 ```
 MyTool> caltool uninstall
 my-tool
-    uninstalled "my-tool" in /Users/po/.local/bin
-    uninstalled "my-tool.fish" in /Users/po/.config/fish/completions
-    uninstalled "_my-tool" in /Users/po/.config/zsh/completions
+    uninstalled "my-tool" in "/Users/ps/.local/bin"
+    uninstalled "my-tool.fish" in "/Users/ps/.config/fish/completions"
+    uninstalled "_my-tool" in "/Users/ps/.config/zsh/completions"
 ```
 
 </details>
@@ -333,21 +333,21 @@ Building for production...
 
 > .build/release/caltool install
 __cal_fish_completion_tool
-    installed "__cal_fish_completion_tool" in /Users/ps/.local/bin
+    installed "__cal_fish_completion_tool" in "/Users/ps/.local/bin"
 caltool
-    installed "caltool" in /Users/ps/.local/bin
+    installed "caltool" in "/Users/ps/.local/bin"
     
 cmd-arg-lib-tool> caltool install -s fish zsh -m caltool caltool/init caltool/install caltool/uninstall
 __cal_fish_completion_tool
-    installed "__cal_fish_completion_tool" in /Users/po/.local/bin
+    installed "__cal_fish_completion_tool" in "/Users/ps/.local/bin"
 caltool
-    installed "caltool" in /Users/po/.local/bin
-    installed "_caltool" in /Users/po/.config/zsh/completions
-    installed "caltool.fish" in /Users/po/.config/fish/completions
-    installed "caltool.1" in /Users/po/.local/share/man/man1
-    installed "caltool-init.1" in /Users/po/.local/share/man/man1
-    installed "caltool-install.1" in /Users/po/.local/share/man/man1
-    installed "caltool-uninstall.1" in /Users/po/.local/share/man/man1
+    installed "caltool" in "/Users/ps/.local/bin"
+    installed "_caltool" in "/Users/ps/.config/zsh/completions"
+    installed "caltool.fish" in "/Users/ps/.config/fish/completions"
+    installed "caltool.1" in "/Users/ps/.local/share/man/man1"
+    installed "caltool-init.1" "in /Users/ps/.local/share/man/man1"
+    installed "caltool-install.1" in "/Users/ps/.local/share/man/man1"
+    installed "caltool-uninstall.1" in "/Users/ps/.local/share/man/man1"
 ```
 
 You might need to refresh the shell's completion script cache. One way is
@@ -366,12 +366,3 @@ This software is licensed under the [Mozilla Public License, v. 2.0 "MPL-2.0"](h
 `caltool` requires macOS 12, and should be built using Swift 6.2 or later. Earlier toolchains 
 either do not support macros or have unacceptable macro build performance.
 
-## See Also
-
-[CmdArgLibCore](https://github.com/ouser4629/CmdArgLibCore.git), 
-[CmdArgLibMacros](https://github.com/ouser4629/CmdArgLibMacros.git), 
-[CmdArgLibCommandNodeFrame](https://github.com/ouser4629/CmdArgLibCommandNodeFrame.git), 
-[CmdArgLibHelpScreen](https://github.com/ouser4629/CmdArgLibHelpScreen.git), 
-[CmdArgLibManpage](https://github.com/ouser4629/CmdArgLibManpage.git), 
-[CmdArgLibCompletions](https://github.com/ouser4629/CmdArgLibCompletions.git), 
-[CmdArgLibTestSupport](https://github.com/ouser4629/CmdArgLibTestSupport.git) 
