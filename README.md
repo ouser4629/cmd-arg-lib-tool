@@ -76,11 +76,11 @@ MyTool> tree -L 3
 
 MyTool> swift build -c release
 
-MyTool> caltool install --with-shells fish zsh
+MyTool> caltool install --with-completion-scripts fish zsh
 my-tool
-    installed "my-tool" in "/Users/ps/.local/bin"
-    installed "my-tool.fish" in "/Users/ps/.config/fish/completions"
-    installed "_my-tool" in "/Users/ps/.config/zsh/completions"
+    installed "my-tool" in "/Users/po/.local/bin"
+    installed "my-tool.fish" in "/Users/po/.config/fish/completions"
+    installed "_my-tool" in "/Users/po/.config/zsh/completions"
 ```
 
 </details>
@@ -143,10 +143,9 @@ See "my-tool --help" for more information.
 
 ```
 MyTool> caltool uninstall
-my-tool
-    uninstalled "my-tool" in "/Users/ps/.local/bin"
-    uninstalled "my-tool.fish" in "/Users/ps/.config/fish/completions"
-    uninstalled "_my-tool" in "/Users/ps/.config/zsh/completions"
+    uninstalled "my-tool" in "/Users/po/.local/bin"
+    uninstalled "my-tool.fish" in "/Users/po/.config/fish/completions"
+    uninstalled "_my-tool" in "/Users/po/.config/zsh/completions"
 ```
 
 </details>
@@ -225,6 +224,7 @@ NOTES
 
 ```
 > caltool install -h
+> caltool install -h
 DESCRIPTION
   Install executable products and generate associated shell completion scripts and
   manual pages.
@@ -237,9 +237,8 @@ OPTIONS
   -m/--with-manpages <manpage>...          Generate and install manual pages for the
                                            indicated products.
   -c/--with-completion-scripts <shell>...  For each product, generate and install
-                                           completion scripts for the indicated
-                                           shells (available shells: "zsh" and
-                                           "fish").
+                                           completion scripts for the indicated shells
+                                           (available shells: "zsh" and "fish").
   <product>...                             The names of products to install (default:
                                            executable products in the release
                                            directory).
@@ -323,31 +322,34 @@ Adjust as needed for your operating system and environment.
 <summary>Install</summary>
 
 ```
+## Clone
 > git clone https://github.com/ouser4629/cmd-arg-lib-tool.git
 Cloning into 'cmd-arg-lib-tool'...
 
+## Move to package directory
 > cd cmd-arg-lib-tool
 
-> swift build -c release
+## Build
+cmd-arg-lib-tool> swift build -c release
 Building for production...
 
-> .build/release/caltool install
+## Install fish completion helper
+cmd-arg-lib-tool> .build/release/caltool install __cal_fish_completion_tool
 __cal_fish_completion_tool
-    installed "__cal_fish_completion_tool" in "/Users/ps/.local/bin"
-caltool
-    installed "caltool" in "/Users/ps/.local/bin"
+    installed "__cal_fish_completion_tool" in "/Users/po/.local/bin"
     
-cmd-arg-lib-tool> caltool install -s fish zsh -m caltool caltool/init caltool/install caltool/uninstall
-__cal_fish_completion_tool
-    installed "__cal_fish_completion_tool" in "/Users/ps/.local/bin"
+## Install caltool
+cmd-arg-lib-tool> .build/release/caltool install caltool \
+                          --with-completion-scripts fish zsh \
+                          --with-manpages caltool caltool/init caltool/install caltool/uninstall
 caltool
-    installed "caltool" in "/Users/ps/.local/bin"
-    installed "_caltool" in "/Users/ps/.config/zsh/completions"
-    installed "caltool.fish" in "/Users/ps/.config/fish/completions"
-    installed "caltool.1" in "/Users/ps/.local/share/man/man1"
-    installed "caltool-init.1" "in /Users/ps/.local/share/man/man1"
-    installed "caltool-install.1" in "/Users/ps/.local/share/man/man1"
-    installed "caltool-uninstall.1" in "/Users/ps/.local/share/man/man1"
+    installed "caltool" in "/Users/po/.local/bin"
+    installed "caltool.fish" in "/Users/po/.config/fish/completions"
+    installed "_caltool" in "/Users/po/.config/zsh/completions"
+    installed "caltool.1" in "/Users/po/.local/share/man/man1"
+    installed "caltool-init.1" in "/Users/po/.local/share/man/man1"
+    installed "caltool-install.1" in "/Users/po/.local/share/man/man1"
+    installed "caltool-uninstall.1" in "/Users/po/.local/share/man/man1"
 ```
 
 You might need to refresh the shell's completion script cache. One way is
