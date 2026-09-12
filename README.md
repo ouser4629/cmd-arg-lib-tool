@@ -78,9 +78,9 @@ MyTool> swift build -c release
 
 MyTool> caltool install --with-completion-scripts fish zsh
 my-tool
-    installed "my-tool" in "/Users/po/.local/bin"
-    installed "my-tool.fish" in "/Users/po/.config/fish/completions"
-    installed "_my-tool" in "/Users/po/.config/zsh/completions"
+    installed "my-tool" in "/Users/ps/.local/bin"
+    installed "my-tool.fish" in "/Users/ps/.config/fish/completions"
+    installed "_my-tool" in "/Users/ps/.config/zsh/completions"
 ```
 
 </details>
@@ -143,9 +143,9 @@ See "my-tool --help" for more information.
 
 ```
 MyTool> caltool uninstall
-    uninstalled "my-tool" in "/Users/po/.local/bin"
-    uninstalled "my-tool.fish" in "/Users/po/.config/fish/completions"
-    uninstalled "_my-tool" in "/Users/po/.config/zsh/completions"
+    uninstalled "my-tool" in "/Users/ps/.local/bin"
+    uninstalled "my-tool.fish" in "/Users/ps/.config/fish/completions"
+    uninstalled "_my-tool" in "/Users/ps/.config/zsh/completions"
 ```
 
 </details>
@@ -336,24 +336,41 @@ Building for production...
 ## Install fish completion helper
 cmd-arg-lib-tool> .build/release/caltool install __cal_fish_completion_tool
 __cal_fish_completion_tool
-    installed "__cal_fish_completion_tool" in "/Users/po/.local/bin"
+    installed "__cal_fish_completion_tool" in "/Users/ps/.local/bin"
     
 ## Install caltool
 cmd-arg-lib-tool> .build/release/caltool install caltool \
                           --with-completion-scripts fish zsh \
                           --with-manpages caltool caltool/init caltool/install caltool/uninstall
 caltool
-    installed "caltool" in "/Users/po/.local/bin"
-    installed "caltool.fish" in "/Users/po/.config/fish/completions"
-    installed "_caltool" in "/Users/po/.config/zsh/completions"
-    installed "caltool.1" in "/Users/po/.local/share/man/man1"
-    installed "caltool-init.1" in "/Users/po/.local/share/man/man1"
-    installed "caltool-install.1" in "/Users/po/.local/share/man/man1"
-    installed "caltool-uninstall.1" in "/Users/po/.local/share/man/man1"
+    installed "caltool" in "/Users/ps/.local/bin"
+    installed "caltool.fish" in "/Users/ps/.config/fish/completions"
+    installed "_caltool" in "/Users/ps/.config/zsh/completions"
+    installed "caltool.1" in "/Users/ps/.local/share/man/man1"
+    installed "caltool-init.1" in "/Users/ps/.local/share/man/man1"
+    installed "caltool-install.1" in "/Users/ps/.local/share/man/man1"
+    installed "caltool-uninstall.1" in "/Users/ps/.local/share/man/man1"
 ```
 
 You might need to refresh the shell's completion script cache. One way is
 to open a new tab by pressing `<CMD-T>`.
+
+</details>
+
+<details>
+<summary>Uninstall</summary>
+
+```
+cmd-arg-lib-tool> caltool uninstall
+    uninstalled "__cal_fish_completion_tool" in "/Users/ps/.local/bin"
+    uninstalled "caltool" in "/Users/ps/.local/bin"
+    uninstalled "caltool.fish" in "/Users/ps/.config/fish/completions"
+    uninstalled "_caltool" in "/Users/ps/.config/zsh/completions"
+    uninstalled "caltool.1\" in "/Users/ps/.local/share/man/man1"
+    uninstalled "caltool-uninstall.1\" in "/Users/ps/.local/share/man/man1"
+    uninstalled "caltool-install.1\" in "/Users/ps/.local/share/man/man1"
+    uninstalled "caltool-init.1\" in "/Users/ps/.local/share/man/man1"
+```
 
 </details>
 
