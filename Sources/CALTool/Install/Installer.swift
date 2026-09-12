@@ -71,7 +71,7 @@ extension Installer {
             try? fm.removeItem(at: installedURL)
             let releaseURL = releaseDirURL.appending(path: releaseName)
             try fm.copyItem(at: releaseURL, to: installedURL)
-            output.append("    installed \"\(releaseName)\" in \(productDir)")
+            output.append(#"    installed "\#(releaseName)" in "\#(productDir)""#)
             let releasePath = releaseURL.path
             try await installCompletionScript(for: releaseName, calling: releasePath, &output)
             try await installManpages(named: manpagesToInstall.filter{$0.hasPrefix(releaseName)}, &output)
@@ -100,7 +100,7 @@ extension Installer {
                 throw Exception.stderr("Failed to create \"\(manpageName)\"")
             }
             if fm.fileExists(atPath: scriptPath) {
-                output.append("    installed \"\(manpageName)\" in \(manpageDirURL.path)")
+                output.append(#"    installed "\#(manpageName)" in "\#(manpageDirURL.path)""#)
             }
         }
     }
@@ -129,10 +129,10 @@ extension Installer {
             }
             try? fm.removeItem(atPath: scriptPath)
             if !fm.createFile(atPath: scriptPath, contents: Data(script.utf8)) {
-                throw Exception.stderr("Failed to create \(scriptPath)")
+                throw Exception.stderr(#"Failed to create "\#(scriptPath)""#)
             }
             if fm.fileExists(atPath: scriptPath) {
-                output.append("    installed \"\(scriptName)\" in \(installPath)")
+                output.append(#"    installed "\#(scriptName)" in "\#(installPath)""#)
             }
         }
 

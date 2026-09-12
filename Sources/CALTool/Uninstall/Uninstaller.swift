@@ -46,15 +46,15 @@ extension Uninstaller {
     ///
     func uninstall(_ specificNames: [String], confirmEach: Bool, confirmEachLimit: Int?) async throws {
         var output: [String] = []
+        var errorMessages: [String] = []
         try await validateParameters()
-        let fm = FileManager.default
-        let productDir = productDirURL.path
         var names = specificNames
         if names.isEmpty {
             names = try namesOfExecutableFilesIn(releaseDirURL)
         }
-        var errorMessages: [String] = []
-        validateUninstallNames(names, &errorMessages)
+        else {
+            validateUninstallNames(names, &errorMessages)
+        }
         if let confirmEachLimit, confirmEachLimit < 1 {
             errorMessages.append("The value for $E{confirmEachLimit} must be positive")
         }
@@ -79,10 +79,7 @@ extension Uninstaller {
 
         productNames.sort { $0 < $1 }
         for productName in productNames {
-            output.append("\(productName)")
-            let installedURL = productDirURL.appending(path: productName)
-            try? fm.removeItem(at: installedURL)
-            output.append("    uninstalled \"\(productName)\" in \(productDir)")
+            try await uninstallExecutable(for: productName, &output)
             try await uninstallFishCompletionScript(for: productName, &output)
             try await uninstallZshCompletionScript(for: productName, &output)
             try await uninstallManpages(for: productName, &output)
@@ -91,11 +88,35 @@ extension Uninstaller {
             throw Exception.stdout(output.joined(separator: "\n"))
         }
     }
+}
 
-    func manpageName(of url: URL, for productName: String) -> String? {
-        let parts = url.pathComponents
-        guard let name = parts.last, name.hasSuffix(".1"), name.hasPrefix(productName) else { return nil }
-        return name
+extension Uninstaller {
+
+    func uninstallExecutable(for productName: String, _ output: inout [String]) async throws {
+        let fm = FileManager.default
+        let executablePath = productDirURL.appending(path: productName).path
+        if fm.fileExists(atPath: executablePath) {
+            try? fm.removeItem(atPath: executablePath)
+            output.append(#"    uninstalled "\#(productName)" in "\#(productDirURL.path)""#)
+        }
+    }
+
+    func uninstallFishCompletionScript(for productName: String, _ output: inout [String]) async throws {
+        let fm = FileManager.default
+        let scriptPath = fishDirURL.appending(path: "\(productName).fish").path
+        if fm.fileExists(atPath: scriptPath) {
+            try? fm.removeItem(atPath: scriptPath)
+            output.append(#"    uninstalled "\#(productName).fish" in "\#(fishDirURL.path)""#)
+        }
+    }
+
+    func uninstallZshCompletionScript(for productName: String, _ output: inout [String]) async throws {
+        let fm = FileManager.default
+        let scriptPath = zshDirURL.appending(path: "_\(productName)").path
+        if fm.fileExists(atPath: scriptPath) {
+            try? fm.removeItem(atPath: scriptPath)
+            output.append(#"    uninstalled "_\#(productName)" in "\#(zshDirURL.path)""#)
+        }
     }
 
     // Uninstalls all whose name matches productName*
@@ -109,27 +130,15 @@ extension Uninstaller {
             let path = manpageDirURL.appending(path: name).path
             if fm.fileExists(atPath: path) {
                 try? fm.removeItem(atPath: path)
-                output.append("    uninstalled \"\(name)\" in \(manpageDirURL.path)")
+                output.append(#"    uninstalled "\#(name)\" in "\#(manpageDirURL.path)""#)
             }
         }
     }
 
-    func uninstallFishCompletionScript(for productName: String, _ output: inout [String]) async throws {
-        let fm = FileManager.default
-        let scriptPath = fishDirURL.appending(path: "\(productName).fish").path
-        if fm.fileExists(atPath: scriptPath) {
-            try? fm.removeItem(atPath: scriptPath)
-            output.append("    uninstalled \"\(productName).fish\" in \(fishDirURL.path)")
-        }
-    }
-
-    func uninstallZshCompletionScript(for productName: String, _ output: inout [String]) async throws {
-        let fm = FileManager.default
-        let scriptPath = zshDirURL.appending(path: "_\(productName)").path
-        if fm.fileExists(atPath: scriptPath) {
-            try? fm.removeItem(atPath: scriptPath)
-            output.append("    uninstalled \"_\(productName)\" in \(zshDirURL.path)")
-        }
+    func manpageName(of url: URL, for productName: String) -> String? {
+        let parts = url.pathComponents
+        guard let name = parts.last, name.hasSuffix(".1"), name.hasPrefix(productName) else { return nil }
+        return name
     }
 }
 
@@ -142,7 +151,7 @@ extension Uninstaller {
             let dirPath = dirURL.path
             let exists = FileManager.default.fileExists(atPath: dirPath, isDirectory: &isDirectory)
             if !(exists && isDirectory.boolValue) {
-                errors.append("Not a directory: \(dirPath).")
+                errors.append(#""\#(dirPath)" is not a directory"#)
             }
         }
         check(releaseDirURL)
@@ -159,20 +168,20 @@ extension Uninstaller {
         for name in names {
             let namePath = productDirURL.appending(path: name).path
             if !fm.fileExists(atPath: namePath) {
-                errorMessages.append("Could not find \(name) in \(productDir)")
+                errorMessages.append(#"Could not uninstall "\#(name)" because it is not in "\#(productDir)#"#)
             }
         }
     }
-}
 
-/// Asks the user for confirmation in the terminal.
-/// - Parameter question: The prompt to display.
-/// - Returns: True if user enters 'y' or 'yes', false otherwise.
-func askForConfirmation(question: String) -> Bool {
-    print("\(question) (y/n): ", terminator: "")
-    guard let response = readLine() else {
-        return false  // Handle empty input or EOF
+    /// Asks the user for confirmation in the terminal.
+    /// - Parameter question: The prompt to display.
+    /// - Returns: True if user enters 'y' or 'yes', false otherwise.
+    func askForConfirmation(question: String) -> Bool {
+        print("\(question) (y/n): ", terminator: "")
+        guard let response = readLine() else {
+            return false  // Handle empty input or EOF
+        }
+        let allowedResponses = ["y", "yes"]
+        return allowedResponses.contains(response.lowercased())
     }
-    let allowedResponses = ["y", "yes"]
-    return allowedResponses.contains(response.lowercased())
 }
