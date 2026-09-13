@@ -362,7 +362,9 @@ to open a new tab by pressing `<CMD-T>`.
 
 ```
 cmd-arg-lib-tool> caltool uninstall
+__cal_fish_completion_tool
     uninstalled "__cal_fish_completion_tool" in "/Users/ps/.local/bin"
+caltool
     uninstalled "caltool" in "/Users/ps/.local/bin"
     uninstalled "caltool.fish" in "/Users/ps/.config/fish/completions"
     uninstalled "_caltool" in "/Users/ps/.config/zsh/completions"

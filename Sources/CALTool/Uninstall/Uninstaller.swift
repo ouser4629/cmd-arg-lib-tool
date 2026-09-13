@@ -79,6 +79,7 @@ extension Uninstaller {
 
         productNames.sort { $0 < $1 }
         for productName in productNames {
+            output.append(productName)
             try await uninstallExecutable(for: productName, &output)
             try await uninstallFishCompletionScript(for: productName, &output)
             try await uninstallZshCompletionScript(for: productName, &output)
