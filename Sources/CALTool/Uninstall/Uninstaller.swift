@@ -169,7 +169,7 @@ extension Uninstaller {
         for name in names {
             let namePath = productDirURL.appending(path: name).path
             if !fm.fileExists(atPath: namePath) {
-                errorMessages.append(#"Could not uninstall "\#(name)" because it is not in "\#(productDir)#"#)
+                errorMessages.append(#"Cannot uninstall "\#(name)" because it is not in "\#(productDir)""#)
             }
         }
     }
