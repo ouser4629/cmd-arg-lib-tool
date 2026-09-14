@@ -224,7 +224,6 @@ NOTES
 
 ```
 > caltool install -h
-> caltool install -h
 DESCRIPTION
   Install executable products and generate associated shell completion scripts and
   manual pages.
@@ -304,7 +303,7 @@ Adjust as needed for your operating system and environment.
   * mkdir -p ~/.local/bin 
   * mkdir -p ~/.config/fish/completions
   * mkdir -p ~/.local/share/man/man1
-  * run fish_add_path -a ~/.local/bin
+  * fish_add_path -a ~/.local/bin
   * add "set -gx MANPATH ~/.local/share/man/man1 "" $MANPATH" to ~/.config/fish
   
 * For zsh
@@ -326,12 +325,12 @@ Adjust as needed for your operating system and environment.
 > git clone https://github.com/ouser4629/cmd-arg-lib-tool.git
 Cloning into 'cmd-arg-lib-tool'...
 
-## Move to package directory
+## Move to the package directory
 > cd cmd-arg-lib-tool
 
 ## Build
 cmd-arg-lib-tool> swift build -c release
-Building for production...
+Building for production ...
 
 ## Install fish completion helper
 cmd-arg-lib-tool> .build/release/caltool install __cal_fish_completion_tool
@@ -340,8 +339,8 @@ __cal_fish_completion_tool
     
 ## Install caltool
 cmd-arg-lib-tool> .build/release/caltool install caltool \
-                          --with-completion-scripts fish zsh \
-                          --with-manpages caltool caltool/init caltool/install caltool/uninstall
+                      --with-completion-scripts fish zsh \
+                      --with-manpages caltool caltool/init caltool/install caltool/uninstall
 caltool
     installed "caltool" in "/Users/ps/.local/bin"
     installed "caltool.fish" in "/Users/ps/.config/fish/completions"
