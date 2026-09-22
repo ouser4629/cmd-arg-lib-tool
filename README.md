@@ -379,7 +379,7 @@ caltool
 
 ## Project Status
 
-This software is licensed under the [Mozilla Public License, v. 2.0 "MPL-2.0"](https://mozilla.org/MPL/2.0).
+This software is licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 `caltool` is currently in beta (version 0.5.1), and has only been tested for macOS.
 
